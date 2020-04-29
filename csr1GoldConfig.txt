@@ -1,6 +1,6 @@
 !
-! Last configuration change at 15:59:19 EST Tue Apr 21 2020 by dave
-! NVRAM config last updated at 15:59:21 EST Tue Apr 21 2020 by dave
+! Last configuration change at 14:36:37 EST Wed Apr 29 2020 by dave
+! NVRAM config last updated at 14:36:39 EST Wed Apr 29 2020 by dave
 !
 version 16.6
 service timestamps debug datetime
@@ -141,7 +141,7 @@ redundancy
 !
 !
 interface GigabitEthernet1
- description changed now
+ description Changed Interface G1 description
  ip address 192.168.109.37 255.255.255.0
  negotiation auto
  no mop enabled
@@ -174,6 +174,7 @@ ip http secure-server
 ip http client source-interface GigabitEthernet1
 ip route 0.0.0.0 0.0.0.0 192.168.109.1
 ip route 172.31.0.0 255.255.0.0 192.168.109.1
+ip route 192.168.40.0 255.255.255.0 192.168.116.1
 !
 ip ssh logging events
 ip scp server enable
@@ -216,6 +217,11 @@ ip sla 10
  icmp-echo 71.242.0.12 source-ip 192.168.109.37
  tag DE Local DNS
 ip sla schedule 10 life forever start-time now
+ip sla 11
+ icmp-echo 4.2.2.1 source-interface GigabitEthernet3
+ tag L3_DNS_Server
+ frequency 10
+ip sla schedule 11 life forever start-time now
 ip sla responder
 ip sla responder udp-echo port 3333
 access-list 2 permit 192.168.101.0 0.0.0.255
