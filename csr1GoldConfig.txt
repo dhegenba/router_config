@@ -1,6 +1,12 @@
+
+
+
+Building configuration...
+
+Current configuration : 7035 bytes
 !
-! Last configuration change at 15:36:33 EST Wed Apr 29 2020 by dave
-! NVRAM config last updated at 14:36:39 EST Wed Apr 29 2020 by dave
+! Last configuration change at 10:25:24 EST Fri Aug 14 2020 by dave
+! NVRAM config last updated at 12:27:40 EST Tue Aug 18 2020 by dave
 !
 version 16.6
 service timestamps debug datetime
@@ -19,6 +25,7 @@ enable password flex$Code2019
 !
 aaa new-model
 !
+aaa user profile cisco
 aaa user profile dave
 !
 aaa authentication login default local
@@ -115,6 +122,7 @@ spanning-tree extend system-id
 !
 !
 username dave privilege 15 password 0 dave
+username cisco privilege 15 password 0 cisco
 !
 redundancy
 !
@@ -192,8 +200,8 @@ ip sla 4
  tag VPNtoMA
 ip sla schedule 4 life forever start-time now
 ip sla 5
- icmp-echo 172.31.18.37 source-ip 192.168.109.37
- tag icmp_to_demo.pliant.io_inside
+ icmp-echo 52.242.103.231 source-ip 192.168.109.37
+ tag icmp_to_demo.pliant.io
 ip sla schedule 5 life forever start-time now
 ip sla 6
  udp-echo 192.168.111.253 3334
@@ -222,6 +230,22 @@ ip sla 11
  tag L3_DNS_Server
  frequency 10
 ip sla schedule 11 life forever start-time now
+ip sla 12
+ dns www.pliant.io name-server 8.8.8.8
+ tag ResolvePliantIo
+ip sla schedule 12 life forever start-time now
+ip sla 13
+ dns www.pliant.io name-server 71.242.0.12
+ tag VZDNStoPliantIo
+ip sla schedule 13 life forever start-time now
+ip sla 14
+ dns www.pliant.io name-server 1.1.1.1
+ tag 111toPliantIo
+ip sla schedule 14 life forever start-time now
+ip sla 15
+ icmp-echo 52.184.200.108 source-ip 192.168.109.37
+ tag icmp_to_sandbox.pliant.io_inside
+ip sla schedule 15 life forever start-time now
 ip sla responder
 ip sla responder udp-echo port 3333
 access-list 2 permit 192.168.101.0 0.0.0.255
@@ -242,9 +266,9 @@ route-map oneone0 permit 10
  match ip address 10
 !
 snmp-server community public RO
-snmp-server community private RW
-snmp-server community public2 RO
-snmp-server community pub2 RO
+snmp-server community string1 RO
+snmp-server community string2 RO
+snmp-server community string3 RW
 !
 !
 !
