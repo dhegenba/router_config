@@ -3,10 +3,10 @@
 
 Building configuration...
 
-Current configuration : 7035 bytes
+Current configuration : 7164 bytes
 !
-! Last configuration change at 10:25:24 EST Fri Aug 14 2020 by dave
-! NVRAM config last updated at 12:50:45 EST Wed Aug 19 2020 by dave
+! Last configuration change at 16:51:22 EST Wed Aug 19 2020
+! NVRAM config last updated at 17:06:54 EST Wed Aug 19 2020 by dave
 !
 version 16.6
 service timestamps debug datetime
@@ -25,8 +25,8 @@ enable password flex$Code2019
 !
 aaa new-model
 !
-aaa user profile cisco
 aaa user profile dave
+aaa user profile cisco
 !
 aaa authentication login default local
 aaa authentication enable default none
@@ -117,6 +117,7 @@ crypto pki certificate chain TP-self-signed-465281305
 !
 license udi pid CSR1000V sn 9CZP45SLECH
 diagnostic bootup level minimal
+file prompt quiet
 spanning-tree extend system-id
 !
 !
@@ -149,7 +150,7 @@ redundancy
 !
 !
 interface GigabitEthernet1
- description Changed Interface G1 description
+ description changed this thing here!!!
  ip address 192.168.109.37 255.255.255.0
  negotiation auto
  no mop enabled
@@ -176,6 +177,7 @@ router eigrp 9
 virtual-service csr_mgmt
 !
 ip forward-protocol nd
+ip telnet quiet
 ip http server
 ip http authentication local
 ip http secure-server
@@ -279,6 +281,7 @@ control-plane
 !
 !
 !
+alias exec reloadd event manager run rebootnow
 !
 line con 0
  stopbits 1
@@ -295,6 +298,9 @@ ntp server replace
 !
 !
 !
+event manager applet rebootnow
+ event none
+ action 1.0 reload
 !
 !
 pnp profile pnp_cco_profile
