@@ -1,0 +1,277 @@
+Using 5403 out of 33554432 bytes
+!
+! Last configuration change at 14:22:04 EST Mon Oct 5 2020 by dave
+! NVRAM config last updated at 14:22:06 EST Mon Oct 5 2020 by dave
+!
+version 16.6
+service timestamps debug datetime
+service timestamps log datetime
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname VPNRouter1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable password flex$Code2019
+!
+aaa new-model
+!
+aaa user profile cisco
+aaa user profile dave
+!
+aaa authentication login default local
+aaa authentication enable default none
+aaa authorization exec default local none 
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone EST -4 0
+!
+!
+!
+!
+!
+!
+!
+ip name-server 8.8.8.8
+ip cef accounting prefix-length
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9CZP45SLECH
+diagnostic bootup level minimal
+spanning-tree extend system-id
+archive
+ path flash:
+ write-memory
+!
+!
+!
+username dave privilege 15 password 0 dave
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+!
+!
+!
+!
+cdp run
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ description changed this thing here!!!
+ ip address 192.168.109.37 255.255.255.0
+ negotiation auto
+ cdp enable
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ ip address 192.168.110.1 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ ip address 192.168.113.1 255.255.255.0
+ ip access-group 10 in
+ ip access-group 10 out
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+router eigrp 9
+ network 192.168.113.0
+ redistribute connected route-map oneone0
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip telnet quiet
+ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface GigabitEthernet1
+ip route 0.0.0.0 0.0.0.0 192.168.109.1
+ip route 10.11.0.0 255.255.0.0 192.168.113.2
+ip route 172.31.0.0 255.255.0.0 192.168.109.1
+ip route 192.168.40.0 255.255.255.0 192.168.116.1
+!
+ip ssh logging events
+ip scp server enable
+!
+!
+ip access-list extended ac
+ip sla 1
+ icmp-echo 192.168.111.11 source-ip 192.168.109.37
+ tag VPNtoFL
+ip sla schedule 1 life forever start-time now
+ip sla 2
+ icmp-echo 192.168.55.1 source-ip 192.168.109.37
+ tag csr1-to-HBDC
+ip sla schedule 2 life forever start-time now
+ip sla 4
+ icmp-echo 192.168.20.1
+ tag VPNtoMA
+ip sla schedule 4 life forever start-time now
+ip sla 5
+ icmp-echo 52.242.103.231 source-ip 192.168.109.37
+ tag icmp_to_demo.pliant.io
+ip sla schedule 5 life forever start-time now
+ip sla 6
+ udp-echo 192.168.111.253 3334
+ tag UDP2FL
+ip sla schedule 6 life forever start-time now
+ip sla 7
+ icmp-echo 192.168.111.1 source-ip 192.168.109.37
+ tag vpn_to_FL_gw
+ frequency 30
+ip sla schedule 7 life forever start-time now
+ip sla 8
+ icmp-echo 8.8.8.8 source-ip 192.168.109.37
+ tag DE Datacenter to Google DNS
+ip sla schedule 8 life forever start-time now
+ip sla 9
+ icmp-echo 100.14.212.1 source-ip 192.168.109.37
+ tag DE Local Gateway
+ frequency 30
+ip sla schedule 9 life forever start-time now
+ip sla 10
+ icmp-echo 71.242.0.12 source-ip 192.168.109.37
+ tag DE Local DNS
+ip sla schedule 10 life forever start-time now
+ip sla 11
+ icmp-echo 4.2.2.1 source-interface GigabitEthernet3
+ tag L3_DNS_Server
+ frequency 10
+ip sla schedule 11 life forever start-time now
+ip sla 12
+ dns www.pliant.io name-server 8.8.8.8
+ tag ResolvePliantIo
+ip sla schedule 12 life forever start-time now
+ip sla 13
+ dns www.pliant.io name-server 71.242.0.12
+ tag VZDNStoPliantIo
+ip sla schedule 13 life forever start-time now
+ip sla 14
+ dns www.pliant.io name-server 1.1.1.1
+ tag 111toPliantIo
+ip sla schedule 14 life forever start-time now
+ip sla 15
+ icmp-echo 52.184.200.108 source-ip 192.168.109.37
+ tag icmp_to_sandbox.pliant.io_inside
+ip sla schedule 15 life forever start-time now
+ip sla responder
+ip sla responder udp-echo port 3333
+access-list 2 permit 192.168.101.0 0.0.0.255
+access-list 105 permit ip 192.168.101.0 0.0.0.255 any log
+access-list 105 permit ip 192.168.102.0 0.0.0.255 any log
+access-list 105 permit ip 192.168.103.0 0.0.0.255 any log
+access-list 105 permit ip 192.168.104.0 0.0.0.255 any log
+access-list 105 deny   ip any any
+access-list 106 permit ip 192.168.101.0 0.0.0.255 any log
+access-list 106 permit ip 192.168.102.0 0.0.0.255 any log
+access-list 106 permit ip 192.168.103.0 0.0.0.255 any log
+access-list 106 permit ip 192.168.104.0 0.0.0.255 any log
+access-list 106 deny   ip any any
+!
+!
+route-map oneone0 permit 10 
+ match ip address 10
+!
+snmp-server community PliantRocks! RW 10
+snmp-server community PliantRocks2! RW 11
+snmp-server community public RO
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+alias exec reloadd event manager run rebootnow
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ password flex$Code2019
+ transport input ssh
+!
+ntp server 192.168.1.1
+ntp server 192.168.109.2
+ntp server 216.239.35.4
+ntp server 128.175.60.175
+ntp server replace
+!
+!
+!
+!
+event manager applet rebootnow
+ event none
+ action 1.0 reload
+!
+!
+pnp profile pnp_cco_profile
+ transport https ipv4 52.205.197.159 port 443
+end
