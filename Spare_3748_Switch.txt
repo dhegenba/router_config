@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 4656 bytes
+Current configuration : 4663 bytes
 !
 version 12.2
 no service pad
@@ -83,8 +83,8 @@ interface GigabitEthernet1/0/2
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/3
- description GitHub update included
- switchport access vlan 2
+ description Made wrong change last time
+ switchport access vlan 109
 !
 interface GigabitEthernet1/0/4
  description Changing Vlan on port 4 for new server
