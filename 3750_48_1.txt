@@ -1,0 +1,410 @@
+Building configuration...
+
+Current configuration : 11023 bytes
+!
+! Last configuration change at 01:23:13 UTC Thu Jan 20 2022 by cisco
+! NVRAM config last updated at 01:23:51 UTC Thu Jan 20 2022 by cisco
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname 3750_48_1
+!
+boot-start-marker
+boot-end-marker
+!
+enable password cisco
+!
+username dave privilege 15 password 0 dave
+username cisco privilege 15 password 0 cisco
+!
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authentication enable default none
+aaa authorization exec default local none 
+!
+!
+!
+aaa session-id common
+switch 1 provision ws-c3750g-48ts
+system mtu routing 1500
+ip routing
+ip name-server 192.168.1.1
+ip dhcp excluded-address 192.168.111.1 192.168.111.20
+ip dhcp excluded-address 192.168.111.250 192.168.111.254
+!
+ip dhcp pool vlan111
+   network 192.168.111.0 255.255.255.0
+   dns-server 192.168.1.1 
+   default-router 192.168.111.1 
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-411029504
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-411029504
+ revocation-check none
+ rsakeypair TP-self-signed-411029504
+!
+!
+crypto pki certificate chain TP-self-signed-411029504
+ certificate self-signed 01
+  30820240 308201A9 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34313130 32393530 34301E17 0D393330 33303130 30303235 
+  395A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3431 31303239 
+  35303430 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  A60E2C20 2CD0EC30 7BD9B87D D75B4EAB A10AF805 227C20FD 95F3A431 69D7DEFC 
+  BA41A708 A8CA47AC 46624873 D4B896FE 03267FF2 0EAE09A6 ECFC4535 18E7F093 
+  6E357556 4F5D10BB 8966FAE3 DAECEDDE 3F9C2B2A DC77FDE4 EC0A43CA 601C3BC4 
+  80CDCD9F 7796E4B4 3C4179E8 A39D60B4 AC4B667E 38F2B1CC F3F72DDD 07F5D371 
+  02030100 01A36A30 68300F06 03551D13 0101FF04 05300301 01FF3015 0603551D 
+  11040E30 0C820A33 3735305F 34385F31 2E301F06 03551D23 04183016 80144B6D 
+  B036800E 34609EAB 6388938D 02BBA111 B55F301D 0603551D 0E041604 144B6DB0 
+  36800E34 609EAB63 88938D02 BBA111B5 5F300D06 092A8648 86F70D01 01040500 
+  03818100 17CE1317 90B9C5D9 D2BB1424 69D123BF 2ABB7D4F 2787EE4F 12FDC74F 
+  F8261AAD F4B640AC 83C510EA 4350DAD8 C88D7E1E CB4BC147 33433906 27319B56 
+  ED9AF274 05F7B8B6 3772C633 3DD9C24B A45E054A E63E7039 ABAD4BDF 1D7A99EA 
+  1AEF2F55 D2FBAB8A 731AF19D 52DAA803 0B9DFAA6 D3BFC173 2A01EC14 98FB163C E82BB23E
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface GigabitEthernet1/0/1
+ description Palo Alto Outside Verizon
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ description Palo Alto Inside Vlan109
+ switchport access vlan 109
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/3
+ description Palo Alto Inside Vlan2
+ switchport access vlan 2
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/4
+ description Palo Alto Outside Comacst
+ switchport access vlan 999
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/5
+ description Palo Alto MGT port
+ switchport access vlan 109
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/6
+ description Palo Test Network
+ switchport access vlan 119
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+ description Windows Machine
+ switchport access vlan 109
+!
+interface GigabitEthernet1/0/13
+ description Test Bare Metal Box
+ switchport access vlan 109
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/14
+ description Test 3750_24 switch
+ switchport access vlan 109
+ switchport mode access
+!
+interface GigabitEthernet1/0/15
+ description dave PC
+ switchport access vlan 109
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/16
+ description Synology Storage Box
+ switchport access vlan 109
+!
+interface GigabitEthernet1/0/17
+ description DE ESXi box
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+ description DE ESXi box 2
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/20
+ description FL ESXi box
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/21
+ description Dell R240 iDRAC
+ switchport access vlan 109
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/22
+ description Dell R240 ESXi
+ switchport access vlan 109
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/23
+ description EVE Eth0
+ switchport access vlan 119
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+ description DE ESXi NIC 3
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/27
+ description New ESXi NIC 3
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/28
+ description FL ESXi NIC 3
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/29
+ description DE ESXi NIC 4
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/30
+ description New ESXi NIC 4
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/31
+ description FL ESXi NIC 4
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/32
+ description DE ESXi 65 NUC
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 3
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/33
+ switchport access vlan 109
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/34
+!
+interface GigabitEthernet1/0/35
+!
+interface GigabitEthernet1/0/36
+!
+interface GigabitEthernet1/0/37
+!
+interface GigabitEthernet1/0/38
+!
+interface GigabitEthernet1/0/39
+!
+interface GigabitEthernet1/0/40
+!
+interface GigabitEthernet1/0/41
+ description test Ubiquiti Switch
+ switchport access vlan 2
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/42
+ description Upstairs Printer
+ switchport access vlan 2
+ switchport mode access
+!
+interface GigabitEthernet1/0/43
+ description Office Sonos 
+ switchport access vlan 2
+ switchport mode access
+!
+interface GigabitEthernet1/0/44
+!
+interface GigabitEthernet1/0/45
+ description AP Upstairs
+ switchport access vlan 2
+ switchport mode access
+!
+interface GigabitEthernet1/0/46
+ description AP Downstairs
+ switchport access vlan 2
+ switchport mode access
+!
+interface GigabitEthernet1/0/47
+ description Verzion Connection
+!
+interface GigabitEthernet1/0/48
+ description Comcast connection
+ switchport access vlan 999
+ switchport mode access
+!
+interface GigabitEthernet1/0/49
+!
+interface GigabitEthernet1/0/50
+!
+interface GigabitEthernet1/0/51
+!
+interface GigabitEthernet1/0/52
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan109
+ ip address 192.168.109.1 255.255.255.0
+!
+interface Vlan111
+ ip address 192.168.111.1 255.255.255.0
+!
+interface Vlan117
+ description Vlan for demo VMs
+ ip address 192.168.117.1 255.255.255.0
+!
+interface Vlan118
+ description Vlan for dev VMs
+ ip address 192.168.118.1 255.255.255.0
+!
+interface Vlan119
+ ip address 192.168.119.1 255.255.255.0
+!
+!
+router eigrp 9
+ network 192.168.2.0
+ network 192.168.109.0
+!
+router bgp 65009
+ no synchronization
+ bgp log-neighbor-changes
+ network 192.168.109.0
+ neighbor 192.168.109.37 remote-as 65009
+ neighbor 192.168.109.39 remote-as 65009
+ neighbor 192.168.109.40 remote-as 65009
+ neighbor 192.168.109.41 remote-as 65009
+ no auto-summary
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.109.254
+ip route 192.168.1.0 255.255.255.0 192.168.109.254
+ip http server
+ip http secure-server
+!
+!
+!
+snmp-server community public RO
+snmp-server community private RW
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps transceiver all
+snmp-server enable traps tty
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface-old
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps cluster
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps cpu threshold
+snmp-server enable traps power-ethernet group 1-9
+snmp-server enable traps power-ethernet police
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps stackwise
+snmp-server enable traps license
+snmp-server enable traps bgp
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps isis
+snmp-server enable traps msdp
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps energywise
+snmp-server enable traps vstack
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps rtr
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server enable traps errdisable
+snmp-server host 192.168.109.21 version 2c public 
+!
+vstack
+!
+line con 0
+line vty 0 4
+ password cisco
+ exec prompt timestamp
+ transport input telnet ssh
+line vty 5 15
+!
+ntp clock-period 36029950
+ntp server 216.239.35.4
+ntp server 128.175.60.175
+end
