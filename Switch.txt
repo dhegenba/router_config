@@ -3,7 +3,7 @@ Building configuration...
 Current configuration : 4899 bytes
 !
 ! Last configuration change at 14:20:37 UTC Thu Jan 20 2022 by cisco
-! NVRAM config last updated at 14:22:06 UTC Thu Jan 20 2022 by cisco
+! NVRAM config last updated at 14:55:18 UTC Thu Jan 20 2022 by cisco
 !
 version 12.2
 no service pad
@@ -214,7 +214,7 @@ line vty 0 4
  password cisco
 line vty 5 15
 !
-ntp clock-period 36028615
+ntp clock-period 36028614
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
