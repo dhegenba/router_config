@@ -1,6 +1,9 @@
 Building configuration...
 
-Current configuration : 4652 bytes
+Current configuration : 4899 bytes
+!
+! Last configuration change at 21:21:13 UTC Fri Jan 21 2022 by cisco
+! NVRAM config last updated at 14:55:18 UTC Thu Jan 20 2022 by cisco
 !
 version 12.2
 no service pad
@@ -80,10 +83,11 @@ interface GigabitEthernet1/0/1
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/2
+ description To 3750-24 switch
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/3
- description Made wrong change last time
+ description Demo Example of VLAN Change
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/4
@@ -210,4 +214,7 @@ line vty 0 4
  password cisco
 line vty 5 15
 !
+ntp clock-period 36028612
+ntp server 216.239.35.4
+ntp server 128.175.60.175
 end
