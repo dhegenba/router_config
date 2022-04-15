@@ -84,8 +84,8 @@ interface GigabitEthernet1/0/2
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/3
- description default description
- switchport access vlan 2
+ description Changed back to 109
+ switchport access vlan 109
 !
 interface GigabitEthernet1/0/4
  description default description VLAN 1
