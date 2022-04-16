@@ -84,8 +84,8 @@ interface GigabitEthernet1/0/2
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/3
- description Changed back to 109
- switchport access vlan 109
+ description default description
+ switchport access vlan 2
 !
 interface GigabitEthernet1/0/4
  description default description VLAN 1
@@ -210,7 +210,7 @@ line vty 0 4
  password cisco
 line vty 5 15
 !
-ntp clock-period 36028606
+ntp clock-period 36028599
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
