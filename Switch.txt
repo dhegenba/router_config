@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 4892 bytes
+Current configuration : 4852 bytes
 !
-! Last configuration change at 15:27:14 UTC Wed Apr 27 2022 by cisco
-! NVRAM config last updated at 15:54:50 UTC Wed Apr 27 2022 by cisco
+! Last configuration change at 17:11:49 UTC Wed Apr 27 2022 by cisco
+! NVRAM config last updated at 17:54:50 UTC Wed Apr 27 2022 by cisco
 !
 version 12.2
 no service pad
@@ -87,12 +87,11 @@ interface GigabitEthernet1/0/2
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/3
- description default description
- switchport access vlan 2
+ description ONUG demo
+ switchport access vlan 109
 !
 interface GigabitEthernet1/0/4
- description default description for ONUG
- switchport access vlan 109
+ description ONUG default description
 !
 interface GigabitEthernet1/0/5
  description Updating this service
