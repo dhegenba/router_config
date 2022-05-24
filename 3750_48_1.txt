@@ -1,9 +1,9 @@
 Building configuration...
 
-Current configuration : 11023 bytes
+Current configuration : 11249 bytes
 !
-! Last configuration change at 18:07:12 UTC Tue Jan 25 2022 by cisco
-! NVRAM config last updated at 18:54:30 UTC Tue Jan 25 2022 by cisco
+! Last configuration change at 21:47:19 UTC Tue May 24 2022 by cisco
+! NVRAM config last updated at 21:54:30 UTC Tue May 24 2022 by cisco
 !
 version 12.2
 no service pad
@@ -38,11 +38,18 @@ ip routing
 ip name-server 192.168.1.1
 ip dhcp excluded-address 192.168.111.1 192.168.111.20
 ip dhcp excluded-address 192.168.111.250 192.168.111.254
+ip dhcp excluded-address 192.168.118.1 192.168.118.20
+ip dhcp excluded-address 192.168.118.250 192.168.118.254
 !
 ip dhcp pool vlan111
    network 192.168.111.0 255.255.255.0
    dns-server 192.168.1.1 
    default-router 192.168.111.1 
+!
+ip dhcp pool vlan118
+   network 192.168.118.0 255.255.255.0
+   dns-server 192.168.1.1 8.8.8.8 
+   default-router 192.168.118.1 
 !
 !
 !
@@ -140,7 +147,7 @@ interface GigabitEthernet1/0/13
  spanning-tree portfast
 !
 interface GigabitEthernet1/0/14
- description Test 3750_24 switch
+ description NAS2
  switchport access vlan 109
  switchport mode access
 !
@@ -404,7 +411,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36029992
+ntp clock-period 36030016
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
