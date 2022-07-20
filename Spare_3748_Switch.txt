@@ -88,7 +88,8 @@ interface GigabitEthernet1/0/3
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/4
- description short_description
+ description Change Control for the West Coast
+ switchport access vlan 109
 !
 interface GigabitEthernet1/0/5
  description default description
@@ -216,7 +217,7 @@ line vty 0 4
  password cisco
 line vty 5 15
 !
-ntp clock-period 36028609
+ntp clock-period 36028610
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
