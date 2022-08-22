@@ -90,8 +90,8 @@ interface GigabitEthernet1/0/3
  switchport access vlan 2
 !
 interface GigabitEthernet1/0/4
- description Change Control for the West Coast
- switchport access vlan 2
+ description Change port to vlan 109
+ switchport access vlan 109
 !
 interface GigabitEthernet1/0/5
  description Change for Demo
