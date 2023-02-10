@@ -247,7 +247,6 @@ interface GigabitEthernet1/0/32
  switchport mode trunk
 !
 interface GigabitEthernet1/0/33
- switchport access vlan 109
  switchport mode access
  spanning-tree portfast
 !
@@ -415,7 +414,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030045
+ntp clock-period 36030010
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
