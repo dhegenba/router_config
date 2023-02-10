@@ -90,8 +90,7 @@ interface GigabitEthernet1/0/3
  switchport access vlan 2
 !
 interface GigabitEthernet1/0/4
- description VLAN Change
- switchport access vlan 109
+ description Change for Demo
 !
 interface GigabitEthernet1/0/5
  description did during demo
