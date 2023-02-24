@@ -38,6 +38,12 @@ ip dhcp excluded-address 192.168.111.1 192.168.111.20
 ip dhcp excluded-address 192.168.111.250 192.168.111.254
 ip dhcp excluded-address 192.168.118.1 192.168.118.20
 ip dhcp excluded-address 192.168.118.250 192.168.118.254
+ip dhcp excluded-address 192.168.120.1 192.168.120.20
+ip dhcp excluded-address 192.168.120.200 192.168.120.254
+ip dhcp excluded-address 192.168.121.1 192.168.121.20
+ip dhcp excluded-address 192.168.121.200 192.168.121.254
+ip dhcp excluded-address 192.168.122.1 192.168.122.20
+ip dhcp excluded-address 192.168.122.200 192.168.122.254
 !
 ip dhcp pool vlan111
    network 192.168.111.0 255.255.255.0
@@ -48,6 +54,21 @@ ip dhcp pool vlan118
    network 192.168.118.0 255.255.255.0
    dns-server 192.168.1.1 8.8.8.8 
    default-router 192.168.118.1 
+!
+ip dhcp pool vlan120
+   network 192.168.120.0 255.255.255.0
+   dns-server 172.31.34.44 
+   default-router 192.168.120.1 
+!
+ip dhcp pool vlan121
+   network 192.168.121.0 255.255.255.0
+   dns-server 172.31.34.44 
+   default-router 192.168.121.1 
+!
+ip dhcp pool vlan122
+   network 192.168.122.0 255.255.255.0
+   dns-server 172.31.34.44 
+   default-router 192.168.122.1 
 !
 !
 !
@@ -328,6 +349,12 @@ interface Vlan118
 interface Vlan119
  ip address 192.168.119.1 255.255.255.0
 !
+interface Vlan120
+ ip address 192.168.120.1 255.255.255.0
+!
+interface Vlan121
+ ip address 192.168.122.1 255.255.255.0
+!
 !
 router eigrp 9
  network 192.168.2.0
@@ -414,7 +441,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030010
+ntp clock-period 36030003
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
