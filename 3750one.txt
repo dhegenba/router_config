@@ -1,5 +1,6 @@
 !
-! No configuration change since last restart
+
+
 !
 version 12.2
 no service pad
@@ -24,6 +25,8 @@ aaa new-model
 !
 !
 aaa authentication login default local
+aaa authentication enable default none
+aaa authorization exec default local none 
 !
 !
 !
@@ -170,7 +173,7 @@ line vty 0 4
 line vty 5 15
  transport input telnet
 !
-ntp clock-period 36029065
+ntp clock-period 36029063
 ntp server 128.175.60.175
 event manager applet rebootnow
  event none
