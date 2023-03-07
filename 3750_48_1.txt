@@ -341,6 +341,9 @@ interface Vlan120
  ip address 192.168.120.1 255.255.255.0
 !
 interface Vlan121
+ ip address 192.168.121.1 255.255.255.0
+!
+interface Vlan122
  ip address 192.168.122.1 255.255.255.0
 !
 !
@@ -429,7 +432,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030022
+ntp clock-period 36030019
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
