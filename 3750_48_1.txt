@@ -432,7 +432,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030015
+ntp clock-period 36030013
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
