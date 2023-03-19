@@ -154,9 +154,10 @@ interface GigabitEthernet1/0/13
  spanning-tree portfast
 !
 interface GigabitEthernet1/0/14
- description NAS2
+ description Trunk to switch2
  switchport access vlan 109
- switchport mode access
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/15
  description dave PC
@@ -432,7 +433,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030008
+ntp clock-period 36029997
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
