@@ -109,14 +109,24 @@ interface GigabitEthernet1/0/10
 interface GigabitEthernet1/0/11
 !
 interface GigabitEthernet1/0/12
+ description trunk to main switch 109.1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/13
+ description AP 1
+ switchport access vlan 2
 !
 interface GigabitEthernet1/0/14
+ description AP 2
+ switchport access vlan 2
 !
 interface GigabitEthernet1/0/15
+ description Office Switch
+ switchport access vlan 2
 !
 interface GigabitEthernet1/0/16
+ description Upstairs Printer
  switchport access vlan 2
 !
 interface GigabitEthernet1/0/17
@@ -228,7 +238,7 @@ line vty 0 4
  password cisco
 line vty 5 15
 !
-ntp clock-period 36028623
+ntp clock-period 36028620
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
