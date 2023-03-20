@@ -140,6 +140,8 @@ interface GigabitEthernet1/0/9
  description iDrac 192.168.109.10 server
 !
 interface GigabitEthernet1/0/10
+ description NAS 109.250
+ switchport access vlan 109
 !
 interface GigabitEthernet1/0/11
 !
@@ -433,7 +435,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36029997
+ntp clock-period 36030014
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
