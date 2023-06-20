@@ -175,7 +175,7 @@ line vty 0 4
 line vty 5 15
  transport input telnet
 !
-ntp clock-period 36029061
+ntp clock-period 36029054
 ntp server 128.175.60.175
 event manager applet rebootnow
  event none
