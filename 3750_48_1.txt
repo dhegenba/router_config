@@ -163,7 +163,7 @@ interface GigabitEthernet1/0/14
 !
 interface GigabitEthernet1/0/15
  description dave PC
- switchport access vlan 109
+ switchport access vlan 2
  switchport mode access
  spanning-tree portfast
 !
@@ -440,7 +440,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030025
+ntp clock-period 36030011
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
