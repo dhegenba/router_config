@@ -144,6 +144,10 @@ interface GigabitEthernet1/0/10
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/11
+ description Windows Solarwinds server
+ switchport access vlan 118
+ switchport mode access
+ spanning-tree portfast
 !
 interface GigabitEthernet1/0/12
  description Windows Machine
@@ -440,7 +444,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030020
+ntp clock-period 36030030
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
