@@ -4,8 +4,8 @@
 !
 version 12.2
 no service pad
-service timestamps debug uptime
-service timestamps log uptime
+service timestamps debug datetime
+service timestamps log datetime
 service password-encryption
 !
 hostname 3750one
@@ -31,6 +31,7 @@ aaa authorization exec default local none
 !
 !
 aaa session-id common
+clock timezone EST -4
 switch 1 provision ws-c3750g-24t
 system mtu routing 1500
 ip routing
@@ -156,7 +157,8 @@ ip http server
 ip http secure-server
 !
 !
-logging 192.168.109.35
+logging trap debugging
+logging 192.168.109.17
 access-list 101 deny   tcp any eq 22 any log
 !
 snmp-server community private RO
