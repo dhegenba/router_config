@@ -108,7 +108,7 @@ interface GigabitEthernet1/0/7
 interface GigabitEthernet1/0/8
 !
 interface GigabitEthernet1/0/9
- description $($description) 
+ description Enter New Description
 !
 interface GigabitEthernet1/0/10
 !
