@@ -108,6 +108,7 @@ interface GigabitEthernet1/0/7
 interface GigabitEthernet1/0/8
 !
 interface GigabitEthernet1/0/9
+ description Enter New Descriptions
 !
 interface GigabitEthernet1/0/10
 !
