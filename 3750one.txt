@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 6948 bytes
+Current configuration : 6951 bytes
 !
-! Last configuration change at 12:48:38 EST Fri Nov 3 2023 by cisco
+! Last configuration change at 13:23:04 EST Wed Nov 29 2023 by cisco
 ! NVRAM config last updated at 11:15:27 EST Fri Sep 29 2023 by cisco
 !
 version 12.2
@@ -103,7 +103,7 @@ interface GigabitEthernet1/0/4
  spanning-tree portfast
 !
 interface GigabitEthernet1/0/5
- description WAN Interface
+ description WAN interface 2
 !
 interface GigabitEthernet1/0/6
 !
