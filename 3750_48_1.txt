@@ -176,10 +176,9 @@ interface GigabitEthernet1/0/16
  switchport access vlan 109
 !
 interface GigabitEthernet1/0/17
- description DE ESXi box
- switchport trunk encapsulation dot1q
- switchport trunk native vlan 3
- switchport mode trunk
+ description Homebase S380
+ switchport access vlan 2
+ spanning-tree portfast
 !
 interface GigabitEthernet1/0/18
  description DE ESXi box 111 vmic1
@@ -444,7 +443,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030021
+ntp clock-period 36030006
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
