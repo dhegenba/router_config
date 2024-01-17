@@ -239,7 +239,7 @@ line vty 0 4
  password cisco
 line vty 5 15
 !
-ntp clock-period 36028619
+ntp clock-period 36028626
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
