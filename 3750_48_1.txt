@@ -181,10 +181,9 @@ interface GigabitEthernet1/0/17
  spanning-tree portfast
 !
 interface GigabitEthernet1/0/18
- description DE ESXi box 111 vmic1
- switchport trunk encapsulation dot1q
- switchport trunk native vlan 3
- switchport mode trunk
+ description storage
+ switchport access vlan 109
+ spanning-tree portfast
 !
 interface GigabitEthernet1/0/19
  description DE ESXi box 2
@@ -443,7 +442,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030025
+ntp clock-period 36030035
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
