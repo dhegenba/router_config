@@ -259,6 +259,7 @@ interface GigabitEthernet1/0/32
  switchport trunk encapsulation dot1q
  switchport trunk native vlan 3
  switchport mode trunk
+ spanning-tree portfast trunk
 !
 interface GigabitEthernet1/0/33
  description test switch
@@ -266,6 +267,8 @@ interface GigabitEthernet1/0/33
  switchport mode access
 !
 interface GigabitEthernet1/0/34
+ switchport access vlan 109
+ spanning-tree portfast
 !
 interface GigabitEthernet1/0/35
 !
@@ -442,7 +445,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030017
+ntp clock-period 36030027
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
