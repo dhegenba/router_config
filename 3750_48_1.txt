@@ -271,6 +271,8 @@ interface GigabitEthernet1/0/34
  spanning-tree portfast
 !
 interface GigabitEthernet1/0/35
+ switchport access vlan 109
+ spanning-tree portfast
 !
 interface GigabitEthernet1/0/36
 !
@@ -445,7 +447,7 @@ line vty 0 4
  transport input telnet ssh
 line vty 5 15
 !
-ntp clock-period 36030018
+ntp clock-period 36030027
 ntp server 216.239.35.4
 ntp server 128.175.60.175
 end
